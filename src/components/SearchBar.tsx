@@ -43,7 +43,6 @@ export const searchBarStyles = {
     borderRadius: 50,
     flexDirection: 'row',
     alignItems: 'center',
-    marginRight: 10,
   },
 };
 
