@@ -9,7 +9,7 @@ export const SearchBar = () => {
     <View style={styles.container}>
       <GooglePlacesAutocomplete
         placeholder="Search"
-        query="test"
+        query={() => {}}
         styles={searchBarStyles}
         renderLeftButton={() => (
           <View>
