@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { Categories } from '../components/Categories';
 import { HeaderTabs } from '../components/layout';
 import { SearchBar } from '../components/SearchBar';
 
@@ -10,6 +11,7 @@ export function HomeScreen() {
         <HeaderTabs />
         <SearchBar />
       </View>
+      <Categories />
     </View>
   );
 }
