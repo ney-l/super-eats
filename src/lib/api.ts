@@ -1,7 +1,8 @@
 import camelcase from 'lodash.camelcase';
 import transform from 'lodash.transform';
-import { yelpAPIKey } from '../config/keys';
-import { IRestaurant } from '../types/restaurant.types';
+
+import { yelpAPIKey } from '../config';
+import { IRestaurant } from '../types';
 
 const transformRestaurants = (data) =>
   data
@@ -30,7 +31,7 @@ export const getRestaurants = async (
     };
   }
   const url = `https://api.yelp.com/v3/businesses/search?term=restaurants&location=${city}`;
-  console.log(url);
+
   const options = {
     headers: {
       Authorization: `Bearer ${yelpAPIKey}`,
@@ -42,7 +43,8 @@ export const getRestaurants = async (
   const data = await response.json();
 
   if (!response.ok) {
-    console.log('response is not ok', data.error?.description);
+    console.error('something went wrong fetching restaurants: ');
+    console.error(data);
     return { error: data.error?.description, restaurants: [] };
   }
 

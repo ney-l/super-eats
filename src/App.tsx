@@ -3,9 +3,7 @@ import { StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SafeAreaView from 'react-native-safe-area-view';
 
-import { Divider } from 'react-native-elements';
-import { BottomTabs } from './components/layout/BottomTabs';
-import { HomeScreen } from './screens/Home.screen';
+import { HomeScreen } from './screens';
 
 export function App() {
   return (
@@ -13,8 +11,6 @@ export function App() {
       <SafeAreaView style={styles.container}>
         <StatusBar />
         <HomeScreen />
-        <Divider width={1} />
-        <BottomTabs />
       </SafeAreaView>
     </SafeAreaProvider>
   );

@@ -3,7 +3,8 @@ import React from 'react';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { googleApiKey } from '../config/keys';
+
+import { googleApiKey } from '../../config';
 
 export const SearchBar = ({
   city,

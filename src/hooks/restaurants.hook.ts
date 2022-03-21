@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import * as Location from 'expo-location';
 
-import * as Api from '../lib/api';
-import { IRestaurant } from '../types/restaurant.types';
+import * as Api from '../lib';
+import { IRestaurant } from '../types';
 
 const DEFAULT_CITY_NAME = 'Muelheim';
 
-// this needs to provide name of user's current city and status - granted, denied, unknown
 const getCurrentCity = async () => {
   try {
     const { status } = await Location.requestForegroundPermissionsAsync();

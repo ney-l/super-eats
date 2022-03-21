@@ -1,14 +1,10 @@
 import React from 'react';
-
 import { View, StyleSheet, ScrollView } from 'react-native';
-import { Categories } from '../components/Categories';
-import { HeaderTabs } from '../components/layout';
-import { Error } from '../components/layout';
-import { BottomTabs } from '../components/layout/BottomTabs';
-import { Spinner } from '../components/layout/Spinner';
-import { Restaurants } from '../components/Restaurants';
-import { SearchBar } from '../components/SearchBar';
-import { useRestaurants } from '../hooks/restaurants.hook';
+
+import { HeaderTabs, Error, BottomTabs, Spinner } from '../components/layout';
+import { Restaurants, SearchBar, Categories } from '../components/home';
+import { useRestaurants } from '../hooks';
+import { Divider } from 'react-native-elements';
 
 export function HomeScreen() {
   const {
@@ -33,6 +29,8 @@ export function HomeScreen() {
         <Spinner isLoading={isLoading} />
         <Restaurants restaurants={restaurants} />
       </ScrollView>
+      <Divider width={1} />
+      <BottomTabs />
     </View>
   );
 }
