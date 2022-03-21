@@ -56,8 +56,9 @@ const RestaurantInfo = ({ name, rating }: { name: string; rating: number }) => (
 export const Restaurants = ({
   restaurants,
 }: {
-  restaurants: IRestaurant[];
+  restaurants: IRestaurant[] | [];
 }) => {
+  if (!restaurants.length) return null;
   return (
     <>
       {restaurants.map((restaurant) => (

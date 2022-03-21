@@ -40,7 +40,7 @@ function useCurrentLocation() {
     if (!location) return;
 
     getCurrentLocationName(location);
-  }, [location]);
+  }, []);
 
   let text = 'Waiting..';
   if (errorMsg) {
@@ -53,7 +53,7 @@ function useCurrentLocation() {
     error: errorMsg,
     lat: location?.coords?.latitude,
     lng: location?.coords?.longitude,
-    city,
+    city, // @todo remove
     setCity,
   };
 }
@@ -81,7 +81,10 @@ export const useRestaurants = () => {
     setError(error);
   };
 
+  const reset = () => setError('');
+
   useEffect(() => {
+    reset();
     if (!city) return;
 
     setIsLoading(true);
