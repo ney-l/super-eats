@@ -6,14 +6,16 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import { googleApiKey } from '../config/keys';
 
 export const SearchBar = ({
+  city,
   onCityChange,
 }: {
+  city: string;
   onCityChange: (city: string) => void;
 }) => {
   return (
     <View style={styles.container}>
       <GooglePlacesAutocomplete
-        placeholder="Search"
+        placeholder={city ?? 'Search'}
         query={{ key: googleApiKey }}
         onPress={(data, details) => {
           const [newCity] = data.description.split(',');

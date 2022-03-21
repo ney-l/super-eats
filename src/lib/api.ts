@@ -20,7 +20,9 @@ const transformRestaurants = (data) =>
       transactions: item.transactions,
     }));
 
-export const getRestaurants = (city: string): Promise<IRestaurant[]> => {
+export const getRestaurants = async (
+  city: string
+): Promise<{ restaurants: IRestaurant[]; error: string }> => {
   const url = `https://api.yelp.com/v3/businesses/search?term=restaurants&location=${city}`;
   const options = {
     headers: {
@@ -28,13 +30,17 @@ export const getRestaurants = (city: string): Promise<IRestaurant[]> => {
     },
   };
 
-  return fetch(url, options)
-    .then(async (res) => {
-      const data = await res.json();
-      if (!res.ok) {
-        Promise.reject(data);
-      }
-      return transformRestaurants(data.businesses);
-    })
-    .catch((err) => Promise.reject(err.message));
+  const response = await fetch(url, options);
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    console.log('response is not ok', data.error?.description);
+    return { error: data.error?.description, restaurants: [] };
+  }
+
+  return {
+    error: '',
+    restaurants: data,
+  };
 };

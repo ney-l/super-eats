@@ -17,13 +17,14 @@ export function HomeScreen() {
     onCityChange,
     activeTab,
     onTabChange,
+    city,
   } = useRestaurants();
 
   return (
     <View style={styles.container}>
       <View style={{ backgroundColor: 'white', padding: 15 }}>
         <HeaderTabs activeTab={activeTab} onTabChange={onTabChange} />
-        <SearchBar onCityChange={onCityChange} />
+        <SearchBar city={city} onCityChange={onCityChange} />
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Categories />

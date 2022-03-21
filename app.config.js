@@ -17,6 +17,9 @@ export default {
   assetBundlePatterns: ['**/*'],
   ios: {
     supportsTablet: true,
+    infoPlist: {
+      // UIBackgroundModes: ['location', 'fetch'],
+    },
   },
   android: {
     adaptiveIcon: {
