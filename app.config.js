@@ -30,5 +30,6 @@ export default {
   description: '',
   extra: {
     yelpApiKey: process.env.__SUPER_EATS__YELP_API_KEY,
+    googleApiKey: process.env.__SUPER_EATS__GOOGLE_API_KEY,
   },
 };

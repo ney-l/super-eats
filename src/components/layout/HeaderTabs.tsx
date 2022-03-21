@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
-export function HeaderTabs() {
-  const [activeTab, setActiveTab] = useState('Delivery');
-
-  const handleTabPress = (tab: string) => setActiveTab(tab);
+export function HeaderTabs({
+  activeTab,
+  onTabChange,
+}: {
+  activeTab: string;
+  onTabChange: (tab: string) => void;
+}) {
   return (
     <View
       style={{
@@ -15,12 +18,12 @@ export function HeaderTabs() {
       <HeaderButton
         text="Delivery"
         activeTab={activeTab}
-        onTabPress={handleTabPress}
+        onTabPress={onTabChange}
       />
       <HeaderButton
         text="Pickup"
         activeTab={activeTab}
-        onTabPress={handleTabPress}
+        onTabPress={onTabChange}
       />
     </View>
   );

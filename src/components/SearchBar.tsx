@@ -3,13 +3,22 @@ import React from 'react';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { googleApiKey } from '../config/keys';
 
-export const SearchBar = () => {
+export const SearchBar = ({
+  onCityChange,
+}: {
+  onCityChange: (city: string) => void;
+}) => {
   return (
     <View style={styles.container}>
       <GooglePlacesAutocomplete
         placeholder="Search"
-        query={() => {}}
+        query={{ key: googleApiKey }}
+        onPress={(data, details) => {
+          const [newCity] = data.description.split(',');
+          onCityChange(newCity);
+        }}
         styles={searchBarStyles}
         renderLeftButton={() => (
           <View>
