@@ -4,56 +4,47 @@ import * as Location from 'expo-location';
 import * as Api from '../lib/api';
 import { IRestaurant } from '../types/restaurant.types';
 
-function useCurrentLocation() {
-  const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
-  const [city, setCity] = useState('');
+const DEFAULT_CITY_NAME = 'Muelheim';
 
-  const getCurrentLocation = async () => {
-    let { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== 'granted') {
-      setErrorMsg('Permission to access location was denied');
-      return;
+// this needs to provide name of user's current city and status - granted, denied, unknown
+const getCurrentCity = async () => {
+  try {
+    const { status } = await Location.requestForegroundPermissionsAsync();
+
+    if (status === 'granted') {
+      // get lat and long
+      const {
+        coords: { latitude, longitude },
+      } = await Location.getCurrentPositionAsync({});
+      // get the current city name
+      const [address] = await Location.reverseGeocodeAsync({
+        latitude,
+        longitude,
+      });
+      return { error: null, city: address?.city };
     }
 
-    let location = await Location.getCurrentPositionAsync({});
-    console.log(location?.coords?.latitude, location?.coords?.longitude);
-
-    setLocation(location);
-  };
-
-  useEffect(() => {
-    getCurrentLocation();
-  }, []);
-
-  const getCurrentLocationName = async (location) => {
-    const { latitude, longitude } = location.coords;
-
-    let response = await Location.reverseGeocodeAsync({
-      latitude,
-      longitude,
-    });
-    setCity(response[0].city);
-  };
-
-  useEffect(() => {
-    if (!location) return;
-
-    getCurrentLocationName(location);
-  }, []);
-
-  let text = 'Waiting..';
-  if (errorMsg) {
-    text = errorMsg;
-  } else if (location) {
-    text = JSON.stringify(location);
+    return { error: null, city: DEFAULT_CITY_NAME };
+  } catch (err) {
+    console.error('Error occured: ', err.message, err.stack);
+    return { error: err.message, city: '' };
   }
+};
+
+function useCurrentLocation() {
+  const [errorMsg, setErrorMsg] = useState<null | string>(null);
+  const [city, setCity] = useState<null | string>('');
+
+  useEffect(() => {
+    getCurrentCity().then(({ error, city: cityName }) => {
+      setErrorMsg(error);
+      setCity(cityName);
+    });
+  }, []);
 
   return {
     error: errorMsg,
-    lat: location?.coords?.latitude,
-    lng: location?.coords?.longitude,
-    city, // @todo remove
+    city,
     setCity,
   };
 }
@@ -85,6 +76,7 @@ export const useRestaurants = () => {
 
   useEffect(() => {
     reset();
+
     if (!city) return;
 
     setIsLoading(true);
