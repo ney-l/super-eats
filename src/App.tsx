@@ -3,17 +3,18 @@ import { StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SafeAreaView from 'react-native-safe-area-view';
 
-import { HomeScreen } from './screens';
+import { HomeScreen, Restaurant } from './screens';
 
 export function App() {
-  return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <StatusBar />
-        <HomeScreen />
-      </SafeAreaView>
-    </SafeAreaProvider>
-  );
+  return <Restaurant />;
+  // return (
+  //   <SafeAreaProvider>
+  //     <SafeAreaView style={styles.container}>
+  //       <StatusBar />
+  //       <HomeScreen />
+  //     </SafeAreaView>
+  //   </SafeAreaProvider>
+  // );
 }
 
 const styles = StyleSheet.create({
