@@ -4,6 +4,7 @@ import { View, StyleSheet, ScrollView } from 'react-native';
 import { Categories } from '../components/Categories';
 import { HeaderTabs } from '../components/layout';
 import { Error } from '../components/layout';
+import { BottomTabs } from '../components/layout/BottomTabs';
 import { Spinner } from '../components/layout/Spinner';
 import { Restaurants } from '../components/Restaurants';
 import { SearchBar } from '../components/SearchBar';
