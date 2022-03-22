@@ -1,11 +1,12 @@
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import React from 'react';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
-import { addToCart } from '../../store/features/cartSlice';
+import { addOrRemoveToCart } from '../../store/features/cartSlice';
 import { IMenuItem, useAppDispatch, useAppSelector } from '../../types';
 
 const foods = [
   {
+    id: '1',
     title: 'Lasagna',
     description: 'With butter lettuce, tomato and sauce bechamel',
     price: '$13.50',
@@ -13,6 +14,7 @@ const foods = [
       'https://www.modernhoney.com/wp-content/uploads/2019/08/Classic-Lasagna-14-scaled.jpg',
   },
   {
+    id: '2',
     title: 'Tandoori Chicken',
     description:
       'Amazing Indian dish with tenderloin chicken off the sizzles 🔥',
@@ -20,6 +22,7 @@ const foods = [
     image: 'https://i.ytimg.com/vi/BKxGodX9NGg/maxresdefault.jpg',
   },
   {
+    id: '3',
     title: 'Chilaquiles',
     description:
       'Chilaquiles with cheese and sauce. A delicious mexican dish 🇲🇽',
@@ -28,6 +31,7 @@ const foods = [
       'https://i2.wp.com/chilipeppermadness.com/wp-content/uploads/2020/11/Chilaquales-Recipe-Chilaquiles-Rojos-1.jpg',
   },
   {
+    id: '4',
     title: 'Chicken Caesar Salad',
     description:
       'One can never go wrong with a chicken caesar salad. Healthy option with greens and proteins!',
@@ -36,6 +40,7 @@ const foods = [
       'https://images.themodernproper.com/billowy-turkey/production/posts/2019/Easy-italian-salad-recipe-10.jpg?w=1200&h=1200&q=82&fm=jpg&fit=crop&fp-x=0.5&fp-y=0.5&dm=1614096227&s=c0f63a30cef3334d97f9ecad14be51da',
   },
   {
+    id: '5',
     title: 'Lasagna',
     description: 'With butter lettuce, tomato and sauce bechamel',
     price: '$13.50',
@@ -46,11 +51,13 @@ const foods = [
 
 export const MenuItems = ({ restaurantName }: { restaurantName: string }) => {
   const { selectedItems } = useAppSelector((state) => state.cart);
-  console.log({ selectedItems, restaurantName });
   const dispatch = useAppDispatch();
 
   const selectItem = (item: IMenuItem) =>
-    dispatch(addToCart({ item, restaurantName }));
+    dispatch(addOrRemoveToCart({ item, restaurantName }));
+
+  const findSelected = (id: string) =>
+    selectedItems.some((item) => item.id === id);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -64,6 +71,7 @@ export const MenuItems = ({ restaurantName }: { restaurantName: string }) => {
               }}
               fillColor="#1fc700"
               onPress={() => selectItem(food)}
+              isChecked={findSelected(food.id)}
             />
             <FoodInfo food={food} />
             <FoodImage imageUrl={food.image} />
