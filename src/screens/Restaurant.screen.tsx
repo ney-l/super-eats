@@ -9,10 +9,10 @@ import { StackParams } from '../navigation';
 export const Restaurant = ({
   route,
 }: StackScreenProps<StackParams, 'Restaurant'>) => {
-  console.log(route.params);
+  const { restaurant } = route.params;
   return (
     <View>
-      <About />
+      <About restaurant={restaurant} />
       <Divider width={1.8} style={styles.divider} />
       <MenuItems />
     </View>
