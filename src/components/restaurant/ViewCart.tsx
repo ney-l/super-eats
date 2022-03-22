@@ -1,10 +1,12 @@
 import { View, Text, StyleSheet, Modal, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
+import LottieView from 'lottie-react-native';
 
 import { useAppSelector } from '../../types';
 import { OrderPreview } from './OrderPreview';
 import * as Api from '../../lib/api';
 import { getTotalUSD } from '../../utils/formatters.util';
+import FullScreenLoader from '../layout/FullScreenLoader';
 
 export const ViewCart = ({
   onCheckoutClick,
@@ -12,6 +14,7 @@ export const ViewCart = ({
   onCheckoutClick: () => void;
 }): JSX.Element | null => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { selectedItems: items, restaurant } = useAppSelector(
     (state) => state.cart
@@ -22,12 +25,18 @@ export const ViewCart = ({
   const saveOrder = async () => {
     const result = await Api.saveOrder({ items, restaurantId: restaurant.id });
     console.log(`Result: `, result);
+    return result;
   };
 
   const handleCheckoutPress = async () => {
-    await saveOrder();
+    setLoading(true);
     setModalVisible(false);
+    await saveOrder();
+
     onCheckoutClick();
+    setLoading(false);
+    // setTimeout(() => {
+    // }, 2500);
   };
 
   if (!items.length) {
@@ -62,6 +71,7 @@ export const ViewCart = ({
           </View>
         </View>
       )}
+      {loading && <FullScreenLoader />}
     </>
   );
 };

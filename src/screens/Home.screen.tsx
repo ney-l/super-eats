@@ -13,7 +13,7 @@ import { IRestaurant } from '../types';
 
 export function HomeScreen({
   navigation,
-}: StackScreenProps<StackParams, 'HomeScreen'>) {
+}: StackScreenProps<StackParams, 'Home'>) {
   const {
     isLoading,
     error,
