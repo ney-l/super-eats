@@ -5,7 +5,7 @@ import { HomeScreen, Restaurant, OrderPlaced } from './screens';
 import { IRestaurant } from './types';
 
 export type StackParams = {
-  HomeScreen: undefined;
+  Home: undefined;
   Restaurant: { restaurant: IRestaurant };
   OrderPlaced: undefined;
 };
