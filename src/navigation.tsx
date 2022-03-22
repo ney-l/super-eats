@@ -20,7 +20,17 @@ export const RootNavigation = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home" screenOptions={screenOptions}>
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Restaurant" component={Restaurant} />
+        <Stack.Screen
+          name="Restaurant"
+          component={Restaurant}
+          options={{
+            headerShown: true,
+            title: '',
+            headerBackTitleVisible: false,
+            headerTintColor: 'black',
+            headerTransparent: true,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
