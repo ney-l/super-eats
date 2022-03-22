@@ -82,5 +82,7 @@ export const saveOrder = async (order) => {
     createdAt: new Date().toISOString(),
   };
   orders.push(newOrder);
-  return Promise.resolve({ ...newOrder, message: 'order saved' });
+  setTimeout(() => {
+    return Promise.resolve({ ...newOrder, message: 'order saved' });
+  }, 2500);
 };

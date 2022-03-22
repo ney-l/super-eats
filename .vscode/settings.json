@@ -1,3 +1,7 @@
 {
-  "conventionalCommits.scopes": ["OrderPreview", "SaveOrder"]
+  "conventionalCommits.scopes": [
+    "OrderPreview",
+    "SaveOrder",
+    "OrderConfirmation"
+  ]
 }
