@@ -43,7 +43,10 @@ export const MenuItems = ({
               />
             )}
             <MenuItemInfo menuItem={menuItem} />
-            <MenuItemImage imageUrl={menuItem.image} styles={imageStyles} />
+            <MenuItemImage
+              imageUrl={menuItem.image}
+              imageStyles={imageStyles}
+            />
           </View>
         </View>
       ))}
