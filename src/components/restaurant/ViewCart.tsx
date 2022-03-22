@@ -1,10 +1,15 @@
-import { View, Text, StyleSheet } from 'react-native';
-import React from 'react';
+import { View, Text, StyleSheet, Modal } from 'react-native';
+import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useAppSelector } from '../../types';
+import { OrderPreview } from './OrderPreview';
 
 export const ViewCart = (): JSX.Element | null => {
-  const items = useAppSelector((state) => state.cart.selectedItems);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const { selectedItems: items, restaurantName } = useAppSelector(
+    (state) => state.cart
+  );
 
   const total = items
     .map((item) => Number(item.price.replace('$', '')))
@@ -19,14 +24,34 @@ export const ViewCart = (): JSX.Element | null => {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.innerContainer}>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.text}>View Cart</Text>
-          <Text style={styles.total}>{total}</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    <>
+      <Modal
+        animationType="slide"
+        visible={modalVisible}
+        transparent={true}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <OrderPreview
+          setModalVisible={(bool: boolean) => setModalVisible(bool)}
+          items={items}
+          total={total}
+          restaurantName={restaurantName}
+        />
+      </Modal>
+      {Boolean(items.length) && (
+        <View style={styles.container}>
+          <View style={styles.innerContainer}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => setModalVisible(true)}
+            >
+              <Text style={styles.text}>View Cart</Text>
+              <Text style={styles.total}>{total}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
+    </>
   );
 };
 
