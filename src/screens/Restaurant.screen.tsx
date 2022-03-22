@@ -5,6 +5,7 @@ import { Divider } from 'react-native-elements';
 import { MenuItems } from '../components/restaurant/MenuItems';
 import { StackScreenProps } from '@react-navigation/stack';
 import { StackParams } from '../navigation';
+import { ViewCart } from '../components/restaurant/ViewCart';
 
 export const Restaurant = ({
   route,
@@ -15,6 +16,7 @@ export const Restaurant = ({
       <About restaurant={restaurant} />
       <Divider width={1.8} style={styles.divider} />
       <MenuItems />
+      <ViewCart />
     </View>
   );
 };
