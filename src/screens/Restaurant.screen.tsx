@@ -16,7 +16,7 @@ export const Restaurant = ({
     <View>
       <About restaurant={restaurant} />
       <Divider width={1.8} style={styles.divider} />
-      <MenuItems />
+      <MenuItems restaurantName={restaurant.name} />
       <ViewCart />
     </View>
   );

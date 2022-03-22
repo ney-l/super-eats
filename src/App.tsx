@@ -1,5 +1,11 @@
 import { RootNavigation } from './navigation';
+import { Provider as StoreProvider } from 'react-redux';
+import { store } from './store';
 
 export function App() {
-  return <RootNavigation />;
+  return (
+    <StoreProvider store={store}>
+      <RootNavigation />
+    </StoreProvider>
+  );
 }

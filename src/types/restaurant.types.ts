@@ -8,3 +8,10 @@ export interface IRestaurant {
   price: string;
   transactions: string[];
 }
+
+export interface IMenuItem {
+  title: string;
+  price: string;
+  image: string;
+  description: string;
+}

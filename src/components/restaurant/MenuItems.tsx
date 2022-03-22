@@ -1,6 +1,8 @@
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import React from 'react';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import { addToCart } from '../../store/features/cartSlice';
+import { IMenuItem, useAppDispatch, useAppSelector } from '../../types';
 
 const foods = [
   {
@@ -42,7 +44,14 @@ const foods = [
   },
 ];
 
-export const MenuItems = () => {
+export const MenuItems = ({ restaurantName }: { restaurantName: string }) => {
+  const { selectedItems } = useAppSelector((state) => state.cart);
+  console.log({ selectedItems, restaurantName });
+  const dispatch = useAppDispatch();
+
+  const selectItem = (item: IMenuItem) =>
+    dispatch(addToCart({ item, restaurantName }));
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       {foods.map((food, index) => (
@@ -54,6 +63,7 @@ export const MenuItems = () => {
                 borderRadius: 4,
               }}
               fillColor="#1fc700"
+              onPress={() => selectItem(food)}
             />
             <FoodInfo food={food} />
             <FoodImage imageUrl={food.image} />
