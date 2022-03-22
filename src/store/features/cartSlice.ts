@@ -2,13 +2,19 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IMenuItem } from '../../types';
 
 interface ICartState {
-  restaurantName: string;
   selectedItems: [] | IMenuItem[];
+  restaurant: {
+    id: string;
+    name: string;
+  };
 }
 
 const initialState: ICartState = {
-  restaurantName: '',
   selectedItems: [],
+  restaurant: {
+    id: '',
+    name: '',
+  },
 };
 
 export const cartSlice = createSlice({
@@ -18,8 +24,12 @@ export const cartSlice = createSlice({
     addOrRemoveToCart: (
       state,
       {
-        payload: { item, restaurantName },
-      }: PayloadAction<{ item: IMenuItem; restaurantName: string }>
+        payload: { item, restaurantName, restaurantId },
+      }: PayloadAction<{
+        item: IMenuItem;
+        restaurantName: string;
+        restaurantId: string;
+      }>
     ) => {
       if (state.selectedItems.find((i) => i.id === item.id)) {
         state.selectedItems = state.selectedItems.filter(
@@ -28,7 +38,8 @@ export const cartSlice = createSlice({
       } else {
         state.selectedItems = [...state.selectedItems, item];
       }
-      state.restaurantName = restaurantName;
+      state.restaurant.name = restaurantName;
+      state.restaurant.id = restaurantId;
     },
   },
 });

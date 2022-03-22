@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useAppSelector } from '../../types';
 import { OrderPreview } from './OrderPreview';
+import * as Api from '../../lib/api';
 
 export const ViewCart = (): JSX.Element | null => {
   const [modalVisible, setModalVisible] = useState(false);
 
-  const { selectedItems: items, restaurantName } = useAppSelector(
+  const { selectedItems: items, restaurant } = useAppSelector(
     (state) => state.cart
   );
 
@@ -18,6 +19,16 @@ export const ViewCart = (): JSX.Element | null => {
       style: 'currency',
       currency: 'USD',
     });
+
+  const saveOrder = async () => {
+    const result = await Api.saveOrder({ items, restaurantId: restaurant.id });
+    console.log(`Result: `, result);
+  };
+
+  const handleCheckoutPress = () => {
+    saveOrder();
+    setModalVisible(false);
+  };
 
   if (!items.length) {
     return null;
@@ -32,10 +43,10 @@ export const ViewCart = (): JSX.Element | null => {
         onRequestClose={() => setModalVisible(false)}
       >
         <OrderPreview
-          setModalVisible={(bool: boolean) => setModalVisible(bool)}
+          onCheckoutPress={handleCheckoutPress}
           items={items}
           total={total}
-          restaurantName={restaurantName}
+          restaurantName={restaurant.name}
         />
       </Modal>
       {Boolean(items.length) && (

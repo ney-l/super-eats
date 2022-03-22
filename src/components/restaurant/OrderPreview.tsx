@@ -4,12 +4,12 @@ import { OrderItem } from './OrderItem';
 import { IMenuItem } from '../../types';
 
 export const OrderPreview = ({
-  setModalVisible,
+  onCheckoutPress,
   items,
   total,
   restaurantName,
 }: {
-  setModalVisible: (bool: boolean) => void;
+  onCheckoutPress: () => void;
   items: IMenuItem[];
   total: string;
   restaurantName: string;
@@ -28,9 +28,7 @@ export const OrderPreview = ({
         <View style={styles.buttonView}>
           <TouchableOpacity
             style={styles.checkoutButton}
-            onPress={() => {
-              setModalVisible(false);
-            }}
+            onPress={onCheckoutPress}
           >
             <Text style={styles.checkoutText}>Checkout</Text>
             <Text style={styles.totalText}>{total}</Text>

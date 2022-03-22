@@ -56,3 +56,31 @@ export const getRestaurants = async (
     restaurants: transformRestaurants(data.businesses),
   };
 };
+
+const orders = [
+  {
+    id: '1',
+    restaurantId: '1',
+    userId: '1',
+    items: [
+      {
+        id: '1',
+        title: 'item 1',
+        description: 'item description',
+        price: '$12.00',
+      },
+    ],
+    createdAt: new Date().toISOString(),
+  },
+];
+
+export const saveOrder = async (order) => {
+  console.log('order saved');
+  const newOrder = {
+    ...order,
+    id: `${Date.now()}`,
+    createdAt: new Date().toISOString(),
+  };
+  orders.push(newOrder);
+  return Promise.resolve({ ...newOrder, message: 'order saved' });
+};

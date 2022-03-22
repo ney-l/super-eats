@@ -49,12 +49,18 @@ const foods = [
   },
 ];
 
-export const MenuItems = ({ restaurantName }: { restaurantName: string }) => {
+export const MenuItems = ({
+  restaurantName,
+  restaurantId,
+}: {
+  restaurantName: string;
+  restaurantId: string;
+}) => {
   const { selectedItems } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
   const selectItem = (item: IMenuItem) =>
-    dispatch(addOrRemoveToCart({ item, restaurantName }));
+    dispatch(addOrRemoveToCart({ item, restaurantName, restaurantId }));
 
   const findSelected = (id: string) =>
     selectedItems.some((item) => item.id === id);
