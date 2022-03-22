@@ -1,12 +1,13 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { HomeScreen, Restaurant } from './screens';
+import { HomeScreen, Restaurant, OrderPlaced } from './screens';
 import { IRestaurant } from './types';
 
 export type StackParams = {
   HomeScreen: undefined;
   Restaurant: { restaurant: IRestaurant };
+  OrderPlaced: undefined;
 };
 
 export const RootNavigation = () => {
@@ -31,6 +32,7 @@ export const RootNavigation = () => {
             headerTransparent: true,
           }}
         />
+        <Stack.Screen name="OrderPlaced" component={OrderPlaced} />
       </Stack.Navigator>
     </NavigationContainer>
   );
