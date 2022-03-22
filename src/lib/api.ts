@@ -14,7 +14,7 @@ const transformRestaurants = (data) =>
     // only want restaurants with images
     .filter((item) => item.imageUrl)
     .map((item) => ({
-      id: item.name,
+      id: item.id,
       imageUrl: item.imageUrl,
       name: item.name,
       price: item.price,
