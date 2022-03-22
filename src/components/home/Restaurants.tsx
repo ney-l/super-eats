@@ -2,17 +2,20 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { SliderBox } from 'react-native-image-slider-box';
+import { IRestaurant } from '../../types';
 
-interface IRestaurant {
-  id: string;
-  name: string;
-  images: string[];
-  rating: number;
-}
-
-const Restaurant = ({ restaurant }: { restaurant: IRestaurant }) => {
+const Restaurant = ({
+  restaurant,
+  onRestaurantClick,
+}: {
+  restaurant: IRestaurant;
+  onRestaurantClick: (restaurant: IRestaurant) => void;
+}) => {
   return (
-    <TouchableOpacity activeOpacity={0.8}>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={() => onRestaurantClick(restaurant)}
+    >
       <View style={styles.restaurant}>
         <RestaurantImage images={restaurant.images} />
         <RestaurantInfo name={restaurant.name} rating={restaurant.rating} />
@@ -21,25 +24,21 @@ const Restaurant = ({ restaurant }: { restaurant: IRestaurant }) => {
   );
 };
 
-const RestaurantImage = ({ images }: { images: string[] }) => (
-  <>
-    <SliderBox
-      images={images}
-      sliderBoxHeight={220}
-      onCurrentImagePressed={(index: number) =>
-        console.warn(`image ${index} pressed`)
-      }
-      dotColor="#FFEE58"
-      inactiveDotColor="#90A4AE"
-      paginationBoxVerticalPadding={20}
-      autoplay
-      circleLoop
-    />
-    <TouchableOpacity style={styles.heartIcon}>
-      <MaterialCommunityIcons name="heart-outline" size={25} color="#fff" />
-    </TouchableOpacity>
-  </>
-);
+const RestaurantImage = ({ images }: { images: string[] }) => {
+  return (
+    <>
+      <Image
+        source={{
+          uri: images[0],
+        }}
+        style={styles.image}
+      />
+      <TouchableOpacity style={styles.heartIcon}>
+        <MaterialCommunityIcons name="heart-outline" size={25} color="#fff" />
+      </TouchableOpacity>
+    </>
+  );
+};
 
 const RestaurantInfo = ({ name, rating }: { name: string; rating: number }) => (
   <View style={styles.infoContainer}>
@@ -55,14 +54,20 @@ const RestaurantInfo = ({ name, rating }: { name: string; rating: number }) => (
 
 export const Restaurants = ({
   restaurants,
+  onRestaurantClick,
 }: {
   restaurants: IRestaurant[] | [];
+  onRestaurantClick: (restaurant: IRestaurant) => void;
 }) => {
   if (!restaurants.length) return null;
   return (
     <>
       {restaurants.map((restaurant) => (
-        <Restaurant restaurant={restaurant} key={restaurant.id} />
+        <Restaurant
+          restaurant={restaurant}
+          key={restaurant.id}
+          onRestaurantClick={onRestaurantClick}
+        />
       ))}
     </>
   );

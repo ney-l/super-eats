@@ -1,25 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import SafeAreaView from 'react-native-safe-area-view';
-
-import { HomeScreen, Restaurant } from './screens';
+import { RootNavigation } from './navigation';
 
 export function App() {
-  return <Restaurant />;
-  // return (
-  //   <SafeAreaProvider>
-  //     <SafeAreaView style={styles.container}>
-  //       <StatusBar />
-  //       <HomeScreen />
-  //     </SafeAreaView>
-  //   </SafeAreaProvider>
-  // );
+  return <RootNavigation />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#eee',
-  },
-});

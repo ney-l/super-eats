@@ -10,7 +10,7 @@ export const SearchBar = ({
   city,
   onCityChange,
 }: {
-  city: string;
+  city: string | null;
   onCityChange: (city: string) => void;
 }) => {
   return (

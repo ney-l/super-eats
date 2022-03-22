@@ -3,8 +3,13 @@ import React from 'react';
 import { About } from '../components/restaurant/About';
 import { Divider } from 'react-native-elements';
 import { MenuItems } from '../components/restaurant/MenuItems';
+import { StackScreenProps } from '@react-navigation/stack';
+import { StackParams } from '../navigation';
 
-export const Restaurant = () => {
+export const Restaurant = ({
+  route,
+}: StackScreenProps<StackParams, 'Restaurant'>) => {
+  console.log(route.params);
   return (
     <View>
       <About />
