@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import React from 'react';
 import { About } from '../components/restaurant/About';
 import { Divider } from 'react-native-elements';
