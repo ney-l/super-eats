@@ -74,6 +74,12 @@ const orders = [
   },
 ];
 
+const delay = (time: number) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, time);
+  });
+};
+
 export const saveOrder = async (order) => {
   console.log('order saved');
   const newOrder = {
@@ -82,7 +88,6 @@ export const saveOrder = async (order) => {
     createdAt: new Date().toISOString(),
   };
   orders.push(newOrder);
-  setTimeout(() => {
-    return Promise.resolve({ ...newOrder, message: 'order saved' });
-  }, 2500);
+  await delay(3000);
+  return { ...newOrder, message: 'order saved' };
 };
