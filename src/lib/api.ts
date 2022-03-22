@@ -11,11 +11,12 @@ const transformRestaurants = (data) =>
         result[camelcase(key)] = val;
       })
     )
+    // only want restaurants with images
     .filter((item) => item.imageUrl)
     .map((item) => ({
       name: item.name,
       id: item.name,
-      images: [item.imageUrl],
+      imageUrl: item.imageUrl,
       rating: item.rating,
       price: item.price,
       transactions: item.transactions,

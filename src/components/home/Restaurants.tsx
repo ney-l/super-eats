@@ -1,7 +1,6 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { SliderBox } from 'react-native-image-slider-box';
 import { IRestaurant } from '../../types';
 
 const Restaurant = ({
@@ -17,19 +16,19 @@ const Restaurant = ({
       onPress={() => onRestaurantClick(restaurant)}
     >
       <View style={styles.restaurant}>
-        <RestaurantImage images={restaurant.images} />
+        <RestaurantImage imageUrl={restaurant.imageUrl} />
         <RestaurantInfo name={restaurant.name} rating={restaurant.rating} />
       </View>
     </TouchableOpacity>
   );
 };
 
-const RestaurantImage = ({ images }: { images: string[] }) => {
+const RestaurantImage = ({ imageUrl }: { imageUrl: string }) => {
   return (
     <>
       <Image
         source={{
-          uri: images[0],
+          uri: imageUrl,
         }}
         style={styles.image}
       />
