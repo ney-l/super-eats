@@ -99,7 +99,7 @@ export const RestaurantsEmptyState = ({ isShow }: { isShow: boolean }) => {
 };
 
 const emptyStateStyles = StyleSheet.create({
-  container: { padding: 1, height: 200 },
+  container: { padding: 1, height: 200, flex: 1 },
   icon: { position: 'relative' },
   text: { textAlign: 'center', fontWeight: 'bold' },
 });

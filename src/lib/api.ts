@@ -38,8 +38,6 @@ export const getRestaurants = async (
     categoryId ? `&categories=${categoryId}` : ''
   }`;
 
-  console.log(url);
-
   const options = {
     headers: {
       Authorization: `Bearer ${yelpAPIKey}`,
