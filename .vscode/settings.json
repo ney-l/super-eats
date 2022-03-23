@@ -4,6 +4,7 @@
     "SaveOrder",
     "OrderConfirmation",
     "ClearCart",
-    "Categories"
+    "Categories",
+    "Restaurant"
   ]
 }

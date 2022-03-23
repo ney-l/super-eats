@@ -46,7 +46,7 @@ const RestaurantInfo = ({ name, rating }: { name: string; rating: number }) => (
       <Text style={styles.time}>30-45 • min</Text>
     </View>
     <View style={styles.rating}>
-      <Text>{rating}</Text>
+      <Text>{rating} ⭐️</Text>
     </View>
   </View>
 );
@@ -105,7 +105,6 @@ const styles = StyleSheet.create({
   rating: {
     backgroundColor: 'white',
     height: 30,
-    width: 45,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 15,
