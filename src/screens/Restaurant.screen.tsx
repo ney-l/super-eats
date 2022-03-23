@@ -45,7 +45,7 @@ const menu = [
   },
   {
     id: '5',
-    title: 'Lasagna',
+    title: 'Bechamel Lasagna',
     description: 'With butter lettuce, tomato and sauce bechamel',
     price: '$13.50',
     image:
@@ -61,7 +61,7 @@ export const Restaurant = ({
 
   const goToOrderPlacedScreen = () => navigation.navigate('OrderPlaced');
   return (
-    <View>
+    <View style={styles.container}>
       <About restaurant={restaurant} />
       <Divider width={1.8} style={styles.divider} />
       <MenuItems
@@ -75,6 +75,9 @@ export const Restaurant = ({
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   divider: {
     marginVertical: 20,
   },

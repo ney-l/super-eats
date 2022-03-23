@@ -26,8 +26,12 @@ export const MenuItems = ({
   const findSelected = (id: string) =>
     selectedItems.some((item) => item.id === id);
 
+  // add margin bottom on the Order Preview page so that the
+  // View Cart button does not overlap the menu text
+  const marginBottom = selectedItems.length && !hideCheckbox ? 60 : 0;
+
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
+    <ScrollView style={{ marginBottom }} showsVerticalScrollIndicator={false}>
       {menu.map((menuItem, index) => (
         <View key={`${menuItem.title}-${index}`}>
           <View style={styles.menuItems}>

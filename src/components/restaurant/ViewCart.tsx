@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     position: 'absolute',
-    bottom: 130,
+    bottom: 20,
     zIndex: 999,
   },
   innerContainer: {
