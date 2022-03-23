@@ -9,7 +9,8 @@ import { HeaderTabs, Error, BottomTabs, Spinner } from '../components/layout';
 import { Restaurants, SearchBar, Categories } from '../components/home';
 import { useRestaurants } from '../hooks';
 import { StackParams } from '../navigation';
-import { IRestaurant } from '../types';
+import { IRestaurant, useAppDispatch, useAppSelector } from '../types';
+import { clearCart } from '../store/features/cartSlice';
 
 export function HomeScreen({
   navigation,
@@ -24,9 +25,14 @@ export function HomeScreen({
     city,
   } = useRestaurants();
 
-  const goToRestaurantScreen = (restaurant: IRestaurant) =>
+  const { id } = useAppSelector((state) => state.cart.restaurant);
+  const dispatch = useAppDispatch();
+  const goToRestaurantScreen = (restaurant: IRestaurant) => {
+    if (id !== restaurant.id) {
+      dispatch(clearCart());
+    }
     navigation.navigate('Restaurant', { restaurant });
-
+  };
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
