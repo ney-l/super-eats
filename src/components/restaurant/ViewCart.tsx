@@ -78,7 +78,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     position: 'absolute',
     bottom: 20,
-    zIndex: 999,
   },
   innerContainer: {
     flexDirection: 'row',
