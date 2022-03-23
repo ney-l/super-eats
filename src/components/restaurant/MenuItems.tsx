@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   menuItemInfo: {
-    width: 240,
+    width: 180,
     justifyContent: 'space-evenly',
   },
   title: {
