@@ -3,6 +3,7 @@
     "OrderPreview",
     "SaveOrder",
     "OrderConfirmation",
-    "ClearCart"
+    "ClearCart",
+    "Categories"
   ]
 }

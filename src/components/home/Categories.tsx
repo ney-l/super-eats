@@ -1,4 +1,11 @@
-import { Text, Image, StyleSheet, ScrollView, View } from 'react-native';
+import {
+  Text,
+  Image,
+  StyleSheet,
+  ScrollView,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 
 const categories = [
@@ -39,15 +46,26 @@ const categories = [
   },
 ];
 
-export const Categories = () => {
+export const Categories = ({
+  onCategoryPress,
+  selectedId,
+}: {
+  onCategoryPress: (id: string) => void;
+  selectedId?: string;
+}) => {
   return (
     <View style={styles.container}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {categories.map((item) => (
-          <View key={item.text} style={styles.category}>
-            <Image source={item.image} style={styles.image} />
-            <Text style={styles.text}>{item.text}</Text>
-          </View>
+          <TouchableOpacity
+            onPress={() => onCategoryPress(item.id)}
+            style={item.id === selectedId ? styles.selected : {}}
+          >
+            <View key={item.text} style={styles.category}>
+              <Image source={item.image} style={styles.image} />
+              <Text style={styles.text}>{item.text}</Text>
+            </View>
+          </TouchableOpacity>
         ))}
       </ScrollView>
     </View>
@@ -63,7 +81,13 @@ const styles = StyleSheet.create({
   },
   category: {
     alignItems: 'center',
-    marginRight: 30,
+    marginHorizontal: 15,
+    justifyContent: 'center',
+  },
+  selected: {
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+    paddingBottom: 10,
   },
   image: { width: 50, height: 40, resizeMode: 'contain' },
   text: {

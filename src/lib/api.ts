@@ -25,7 +25,8 @@ const transformRestaurants = (data) =>
     }));
 
 export const getRestaurants = async (
-  city: string = 'Muelheim'
+  city: string = 'Muelheim',
+  categoryId?: string
 ): Promise<{ restaurants: IRestaurant[]; error: string }> => {
   if (!city) {
     return {
@@ -33,7 +34,11 @@ export const getRestaurants = async (
       restaurants: [],
     };
   }
-  const url = `https://api.yelp.com/v3/businesses/search?term=restaurants&location=${city}`;
+  const url = `https://api.yelp.com/v3/businesses/search?term=restaurants&location=${city}${
+    categoryId ? `&categories=${categoryId}` : ''
+  }`;
+
+  console.log(url);
 
   const options = {
     headers: {

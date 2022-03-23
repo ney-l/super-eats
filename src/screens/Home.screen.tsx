@@ -5,12 +5,13 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { HeaderTabs, Error, BottomTabs, Spinner } from '../components/layout';
+import { HeaderTabs, Error, BottomTabs } from '../components/layout';
 import { Restaurants, SearchBar, Categories } from '../components/home';
 import { useRestaurants } from '../hooks';
 import { StackParams } from '../navigation';
 import { IRestaurant, useAppDispatch, useAppSelector } from '../types';
 import { clearCart } from '../store/features/cartSlice';
+import FullScreenLoader from '../components/layout/FullScreenLoader';
 
 export function HomeScreen({
   navigation,
@@ -23,6 +24,8 @@ export function HomeScreen({
     activeTab,
     onTabChange,
     city,
+    categoryId,
+    onCategoryChange,
   } = useRestaurants();
 
   const { id } = useAppSelector((state) => state.cart.restaurant);
@@ -32,6 +35,10 @@ export function HomeScreen({
       dispatch(clearCart());
     }
     navigation.navigate('Restaurant', { restaurant });
+  };
+
+  const fetchCategory = (id: string) => {
+    onCategoryChange(id);
   };
   return (
     <SafeAreaProvider>
@@ -44,15 +51,19 @@ export function HomeScreen({
             <SearchBar city={city} onCityChange={onCityChange} />
           </View>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <Categories />
+            <Categories
+              selectedId={categoryId}
+              onCategoryPress={fetchCategory}
+            />
             <Error error={error} />
-            <Spinner isLoading={isLoading} />
+
             <Restaurants
               restaurants={restaurants}
               onRestaurantClick={goToRestaurantScreen}
             />
           </ScrollView>
           <Divider width={1} />
+          {isLoading && <FullScreenLoader isLight={true} />}
           <BottomTabs />
         </View>
       </SafeAreaView>

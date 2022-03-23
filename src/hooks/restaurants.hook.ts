@@ -51,6 +51,7 @@ function useCurrentLocation() {
 export const useRestaurants = () => {
   const [restaurants, setRestaurants] = useState<IRestaurant[]>([]);
   const { city, setCity, error: locationError } = useCurrentLocation();
+  const [categoryId, setCategoryId] = useState('');
 
   const [activeTab, setActiveTab] = useState('delivery');
   const [error, setError] = useState('');
@@ -66,12 +67,22 @@ export const useRestaurants = () => {
   const onTabChange = (tab: string) => setActiveTab(tab.toLowerCase());
 
   const loadData = async () => {
-    const { restaurants, error } = await Api.getRestaurants(city);
+    const { restaurants, error } = await Api.getRestaurants(city, categoryId);
     setRestaurants(restaurants);
     setError(error);
   };
 
   const reset = () => setError('');
+
+  const handleCategoryChange = (id: string) => {
+    // remove category if it's already selected
+    if (id === categoryId) {
+      setCategoryId('');
+      return;
+    }
+    // otherwise update the category
+    setCategoryId(id);
+  };
 
   useEffect(() => {
     reset();
@@ -79,10 +90,11 @@ export const useRestaurants = () => {
     if (!city) return;
 
     setIsLoading(true);
+
     loadData()
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
-  }, [city, activeTab]);
+  }, [city, activeTab, categoryId]);
 
   return {
     restaurants,
@@ -92,5 +104,7 @@ export const useRestaurants = () => {
     error,
     isLoading,
     city,
+    categoryId,
+    onCategoryChange: handleCategoryChange,
   };
 };
