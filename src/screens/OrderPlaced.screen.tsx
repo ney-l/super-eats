@@ -2,21 +2,27 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
 import LottieView from 'lottie-react-native';
 
-import { useAppSelector } from '../types';
+import { useAppDispatch, useAppSelector } from '../types';
 import { getTotalUSD } from '../utils/formatters.util';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MenuItems } from '../components/restaurant/MenuItems';
 import { ScrollView } from 'react-native-gesture-handler';
 import { StackScreenProps } from '@react-navigation/stack';
 import { StackParams } from '../navigation';
+import { clearCart } from '../store/features/cartSlice';
 
 export const OrderPlaced = ({
   navigation,
 }: StackScreenProps<StackParams, 'OrderPlaced'>) => {
   const { restaurant, selectedItems } = useAppSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
+
   const total = getTotalUSD(selectedItems);
 
-  const handleHomeClick = () => navigation.popToTop();
+  const handleHomeClick = () => {
+    navigation.popToTop();
+    dispatch(clearCart());
+  };
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -31,7 +37,7 @@ export const OrderPlaced = ({
         <Text style={styles.text}>
           Your order at {restaurant.name} has been placed for {total}
         </Text>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <MenuItems
             imageStyles={{ marginLeft: 10 }}
             menu={selectedItems}
@@ -55,7 +61,7 @@ export const OrderPlaced = ({
 const GoHomeButton = ({ onHomeClick }: { onHomeClick: () => void }) => (
   <View style={styles.goHomeContainer}>
     <TouchableOpacity style={styles.goHomeButton} onPress={onHomeClick}>
-      <Text style={styles.goHomeText}>Go to Home</Text>
+      <Text style={styles.goHomeText}>Go Home</Text>
     </TouchableOpacity>
   </View>
 );

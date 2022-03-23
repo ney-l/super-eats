@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet, Modal, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
-import LottieView from 'lottie-react-native';
 
 import { useAppSelector } from '../../types';
 import { OrderPreview } from './OrderPreview';
@@ -23,9 +22,7 @@ export const ViewCart = ({
   const total = getTotalUSD(items);
 
   const saveOrder = async () => {
-    const result = await Api.saveOrder({ items, restaurantId: restaurant.id });
-    console.log(`Result: `, result);
-    return result;
+    await Api.saveOrder({ items, restaurantId: restaurant.id });
   };
 
   const handleCheckoutPress = async () => {
@@ -35,8 +32,6 @@ export const ViewCart = ({
 
     onCheckoutClick();
     setLoading(false);
-    // setTimeout(() => {
-    // }, 2500);
   };
 
   if (!items.length) {

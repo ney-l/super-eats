@@ -41,9 +41,14 @@ export const cartSlice = createSlice({
       state.restaurant.name = restaurantName;
       state.restaurant.id = restaurantId;
     },
+    clearCart: (state) => {
+      state.selectedItems = [];
+      state.restaurant.id = '';
+      state.restaurant.name = '';
+    },
   },
 });
 
-export const { addOrRemoveToCart } = cartSlice.actions;
+export const { addOrRemoveToCart, clearCart } = cartSlice.actions;
 
 export const cartReducer = cartSlice.reducer;
