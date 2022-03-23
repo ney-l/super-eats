@@ -2,6 +2,7 @@
   "conventionalCommits.scopes": [
     "OrderPreview",
     "SaveOrder",
-    "OrderConfirmation"
+    "OrderConfirmation",
+    "ClearCart"
   ]
 }

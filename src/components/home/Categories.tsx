@@ -1,34 +1,41 @@
 import { Text, Image, StyleSheet, ScrollView, View } from 'react-native';
 import React from 'react';
 
-const items = [
+const categories = [
   {
-    image: require('../../../assets/images/shopping-bag.png'),
-    text: 'Pick-up',
+    id: 'turkish',
+    text: 'Turkish',
+    image: require('../../../assets/images/turkish.png'),
   },
   {
-    image: require('../../../assets/images/soft-drink.png'),
-    text: 'Soft Drinks',
+    id: 'chinese',
+    text: 'Chinese',
+    image: require('../../../assets/images/chinese.png'),
   },
   {
-    image: require('../../../assets/images/bread.png'),
-    text: 'Bakery Items',
+    id: 'italian',
+    text: 'Italian',
+    image: require('../../../assets/images/pizza.png'),
   },
   {
-    image: require('../../../assets/images/fast-food.png'),
-    text: 'Fast Foods',
+    id: 'steak',
+    text: 'Steak',
+    image: require('../../../assets/images/steak.png'),
   },
   {
-    image: require('../../../assets/images/deals.png'),
-    text: 'Deals',
-  },
-  {
+    id: 'coffee',
+    text: 'Coffee',
     image: require('../../../assets/images/coffee.png'),
-    text: 'Coffee & Tea',
   },
   {
+    id: 'vegan',
+    text: 'Vegan',
+    image: require('../../../assets/images/salad.png'),
+  },
+  {
+    id: 'dessert',
+    text: 'Dessert',
     image: require('../../../assets/images/desserts.png'),
-    text: 'Desserts',
   },
 ];
 
@@ -36,7 +43,7 @@ export const Categories = () => {
   return (
     <View style={styles.container}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {items.map((item) => (
+        {categories.map((item) => (
           <View key={item.text} style={styles.category}>
             <Image source={item.image} style={styles.image} />
             <Text style={styles.text}>{item.text}</Text>
