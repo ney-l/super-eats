@@ -20,8 +20,8 @@ const categories = [
     image: require('../../../assets/images/chinese.png'),
   },
   {
-    id: 'italian',
-    text: 'Italian',
+    id: 'pizza',
+    text: 'Pizza',
     image: require('../../../assets/images/pizza.png'),
   },
   {
@@ -30,14 +30,29 @@ const categories = [
     image: require('../../../assets/images/steak.png'),
   },
   {
-    id: 'coffee',
-    text: 'Coffee',
-    image: require('../../../assets/images/coffee.png'),
+    id: 'italian',
+    text: 'Italian',
+    image: require('../../../assets/images/italian.png'),
+  },
+  {
+    id: 'seafood',
+    text: 'Seafood',
+    image: require('../../../assets/images/seafood.png'),
+  },
+  {
+    id: 'indian',
+    text: 'Indian',
+    image: require('../../../assets/images/indian.png'),
   },
   {
     id: 'vegan',
     text: 'Vegan',
     image: require('../../../assets/images/salad.png'),
+  },
+  {
+    id: 'coffee',
+    text: 'Coffee',
+    image: require('../../../assets/images/coffee.png'),
   },
   {
     id: 'dessert',
