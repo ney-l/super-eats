@@ -106,5 +106,6 @@ export const useRestaurants = () => {
     city,
     categoryId,
     onCategoryChange: handleCategoryChange,
+    isNotFound: Boolean(error),
   };
 };

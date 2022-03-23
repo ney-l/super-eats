@@ -5,7 +5,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { HeaderTabs, Error, BottomTabs } from '../components/layout';
+import { HeaderTabs, BottomTabs } from '../components/layout';
 import { Restaurants, SearchBar, Categories } from '../components/home';
 import { useRestaurants } from '../hooks';
 import { StackParams } from '../navigation';
@@ -18,7 +18,6 @@ export function HomeScreen({
 }: StackScreenProps<StackParams, 'Home'>) {
   const {
     isLoading,
-    error,
     restaurants,
     onCityChange,
     activeTab,
@@ -26,6 +25,7 @@ export function HomeScreen({
     city,
     categoryId,
     onCategoryChange,
+    isNotFound,
   } = useRestaurants();
 
   const { id } = useAppSelector((state) => state.cart.restaurant);
@@ -55,11 +55,11 @@ export function HomeScreen({
               selectedId={categoryId}
               onCategoryPress={fetchCategory}
             />
-            <Error error={error} />
 
             <Restaurants
               restaurants={restaurants}
               onRestaurantClick={goToRestaurantScreen}
+              isNotFound={isNotFound}
             />
           </ScrollView>
           <Divider width={1} />

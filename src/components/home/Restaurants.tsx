@@ -1,6 +1,8 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import LottieView from 'lottie-react-native';
+
 import { IRestaurant } from '../../types';
 
 const Restaurant = ({
@@ -54,11 +56,15 @@ const RestaurantInfo = ({ name, rating }: { name: string; rating: number }) => (
 export const Restaurants = ({
   restaurants,
   onRestaurantClick,
+  isNotFound,
 }: {
   restaurants: IRestaurant[] | [];
   onRestaurantClick: (restaurant: IRestaurant) => void;
+  isNotFound: boolean;
 }) => {
-  if (!restaurants.length) return null;
+  if (isNotFound) {
+    return <RestaurantsEmptyState isShow={isNotFound} />;
+  }
   return (
     <>
       {restaurants.map((restaurant) => (
@@ -71,6 +77,32 @@ export const Restaurants = ({
     </>
   );
 };
+
+export const RestaurantsEmptyState = ({ isShow }: { isShow: boolean }) => {
+  if (!isShow) {
+    return null;
+  }
+
+  return (
+    <View style={emptyStateStyles.container}>
+      <LottieView
+        style={emptyStateStyles.icon}
+        source={require('../../../assets/animations/nothing-found.json')}
+        autoPlay
+        speed={1}
+      />
+      <Text style={emptyStateStyles.text}>
+        Oh oh.. no restaurants found. Try another category or location?
+      </Text>
+    </View>
+  );
+};
+
+const emptyStateStyles = StyleSheet.create({
+  container: { padding: 1, height: 200 },
+  icon: { position: 'relative' },
+  text: { textAlign: 'center', fontWeight: 'bold' },
+});
 
 const styles = StyleSheet.create({
   restaurant: {
