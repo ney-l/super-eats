@@ -1,14 +1,20 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { HomeScreen, Restaurant, OrderPlaced, Account } from './screens';
-import { IRestaurant } from './types';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {
+  HomeScreen,
+  Restaurant,
+  OrderPlaced,
+  Account,
+  Browse,
+  Orders,
+  Login,
+  Otp,
+  Signup,
+} from './screens';
+import { IRestaurant } from './types';
 import { BottomTabs } from './components/layout';
-import { Browse } from './screens/Browse.screen';
-import { Orders } from './screens/Orders.screen';
-import { Signup } from './screens/Signup.screen';
-import { Login } from './screens/Login.screen';
 
 export type StackParams = {
   Home: undefined;
@@ -16,6 +22,7 @@ export type StackParams = {
   OrderPlaced: undefined;
   Account: undefined;
   Login: undefined;
+  Otp: undefined;
 };
 
 const screenOptions = {
@@ -25,12 +32,24 @@ const screenOptions = {
 const Tab = createBottomTabNavigator();
 
 function HomeTabs() {
+  const isSignedIn = false;
   return (
     <Tab.Navigator screenOptions={screenOptions} tabBar={BottomTabs}>
       <Tab.Screen name="HomeTab" component={HomeScreen} />
       <Tab.Screen name="Browse" component={Browse} />
       <Tab.Screen name="Orders" component={Orders} />
-      <Tab.Screen name="Account" component={Account} />
+      {isSignedIn ? (
+        <Tab.Screen name="Account" component={Account} />
+      ) : (
+        <>
+          <Tab.Screen name="Account" component={Login} />
+          <Tab.Screen
+            name="Otp"
+            component={Otp}
+            options={{ headerShown: true, title: 'Login with OTP' }}
+          />
+        </>
+      )}
     </Tab.Navigator>
   );
 }
@@ -55,7 +74,6 @@ export const RootNavigation = () => {
         />
         <Stack.Screen name="OrderPlaced" component={OrderPlaced} />
         <Stack.Screen name="Signup" component={Signup} />
-        <Stack.Screen name="Login" component={Login} />
       </Stack.Navigator>
     </NavigationContainer>
   );

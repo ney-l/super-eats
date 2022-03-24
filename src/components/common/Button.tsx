@@ -1,17 +1,28 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-export const ContinueButton = ({
+export const Button = ({
   onPress,
-  text = 'Continue',
+  text,
+  backgroundColor,
+  color,
 }: {
   onPress: () => void;
-  text?: string;
+  text: string;
+  backgroundColor?: string;
+  color?: string;
 }) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <View style={buttonStyles.container}>
+      <View
+        style={[
+          buttonStyles.container,
+          backgroundColor ? { backgroundColor } : {},
+        ]}
+      >
         <View style={buttonStyles.innerContainer}>
-          <Text style={buttonStyles.text}>{text}</Text>
+          <Text style={[buttonStyles.text, color ? { color } : {}]}>
+            {text}
+          </Text>
         </View>
       </View>
     </TouchableOpacity>

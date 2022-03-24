@@ -4,12 +4,15 @@ import PhoneInput from 'react-native-phone-number-input';
 import { Consent } from './Consent';
 import { ContinueButton } from './ContinueButton';
 
-export const Auth = () => {
+export const Auth = ({ goToOtpScreen }: { goToOtpScreen: () => void }) => {
   const [phone, setPhone] = useState('');
   const [formattedPhone, setFormattedPhone] = useState('');
   const phoneInput = useRef<PhoneInput>(null);
 
-  const handlePress = () => console.log({ formattedPhone });
+  const handlePress = () => {
+    console.log({ formattedPhone });
+    goToOtpScreen();
+  };
 
   return (
     <View style={styles.container}>

@@ -6,13 +6,13 @@ import { StackParams } from '../navigation';
 export const Account = ({
   navigation,
 }: StackScreenProps<StackParams, 'Account'>) => {
-  const isAuthenticated = false;
+  // const isAuthenticated = false;
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigation.navigate('Login');
-    }
-  }, [isAuthenticated]);
+  // useEffect(() => {
+  //   if (!isAuthenticated) {
+  //     navigation.navigate('Login');
+  //   }
+  // }, [isAuthenticated]);
 
   return (
     <View style={styles.container}>
