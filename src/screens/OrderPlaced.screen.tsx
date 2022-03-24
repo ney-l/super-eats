@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     marginTop: 20,
+    marginBottom: 50,
   },
   goHomeButton: {
     marginTop: 40,

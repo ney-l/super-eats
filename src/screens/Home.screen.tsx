@@ -64,7 +64,6 @@ export function HomeScreen({
           </ScrollView>
           <Divider width={1} />
           {isLoading && <FullScreenLoader isLight={true} />}
-          <BottomTabs />
         </View>
       </SafeAreaView>
     </SafeAreaProvider>
