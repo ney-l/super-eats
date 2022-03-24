@@ -7,13 +7,24 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BottomTabs } from './components/layout';
 import { Browse } from './screens/Browse.screen';
 import { Orders } from './screens/Orders.screen';
+import { Signup } from './screens/Signup.screen';
+import { Login } from './screens/Login.screen';
+
+export type StackParams = {
+  Home: undefined;
+  Restaurant: { restaurant: IRestaurant };
+  OrderPlaced: undefined;
+  Account: undefined;
+  Login: undefined;
+};
+
+const screenOptions = {
+  headerShown: false,
+};
 
 const Tab = createBottomTabNavigator();
 
 function HomeTabs() {
-  const screenOptions = {
-    headerShown: false,
-  };
   return (
     <Tab.Navigator screenOptions={screenOptions} tabBar={BottomTabs}>
       <Tab.Screen name="HomeTab" component={HomeScreen} />
@@ -24,18 +35,8 @@ function HomeTabs() {
   );
 }
 
-export type StackParams = {
-  Home: undefined;
-  Restaurant: { restaurant: IRestaurant };
-  OrderPlaced: undefined;
-};
-
 export const RootNavigation = () => {
   const Stack = createStackNavigator();
-
-  const screenOptions = {
-    headerShown: false,
-  };
 
   return (
     <NavigationContainer>
@@ -53,6 +54,8 @@ export const RootNavigation = () => {
           }}
         />
         <Stack.Screen name="OrderPlaced" component={OrderPlaced} />
+        <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="Login" component={Login} />
       </Stack.Navigator>
     </NavigationContainer>
   );

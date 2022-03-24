@@ -5,6 +5,8 @@
     "OrderConfirmation",
     "ClearCart",
     "Categories",
-    "Restaurant"
+    "Restaurant",
+    "Navigation",
+    "Auth"
   ]
 }

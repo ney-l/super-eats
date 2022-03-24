@@ -1,11 +1,10 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import { Divider } from 'react-native-elements';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { StatusBar } from 'expo-status-bar';
+
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { HeaderTabs, BottomTabs } from '../components/layout';
+import { HeaderTabs, SafeAreaWrapper } from '../components/layout';
 import { Restaurants, SearchBar, Categories } from '../components/home';
 import { useRestaurants } from '../hooks';
 import { StackParams } from '../navigation';
@@ -41,32 +40,25 @@ export function HomeScreen({
     onCategoryChange(id);
   };
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <StatusBar />
-
-        <View style={styles.innerContainer}>
-          <View style={styles.headerContainer}>
-            <HeaderTabs activeTab={activeTab} onTabChange={onTabChange} />
-            <SearchBar city={city} onCityChange={onCityChange} />
-          </View>
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <Categories
-              selectedId={categoryId}
-              onCategoryPress={fetchCategory}
-            />
-
-            <Restaurants
-              restaurants={restaurants}
-              onRestaurantClick={goToRestaurantScreen}
-              isNotFound={isNotFound}
-            />
-          </ScrollView>
-          <Divider width={1} />
-          {isLoading && <FullScreenLoader isLight={true} />}
+    <SafeAreaWrapper>
+      <View style={styles.innerContainer}>
+        <View style={styles.headerContainer}>
+          <HeaderTabs activeTab={activeTab} onTabChange={onTabChange} />
+          <SearchBar city={city} onCityChange={onCityChange} />
         </View>
-      </SafeAreaView>
-    </SafeAreaProvider>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <Categories selectedId={categoryId} onCategoryPress={fetchCategory} />
+
+          <Restaurants
+            restaurants={restaurants}
+            onRestaurantClick={goToRestaurantScreen}
+            isNotFound={isNotFound}
+          />
+        </ScrollView>
+        <Divider width={1} />
+        {isLoading && <FullScreenLoader isLight={true} />}
+      </View>
+    </SafeAreaWrapper>
   );
 }
 
