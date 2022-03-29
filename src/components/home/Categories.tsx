@@ -73,6 +73,7 @@ export const Categories = ({
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {categories.map((item) => (
           <TouchableOpacity
+            key={item.id}
             onPress={() => onCategoryPress(item.id)}
             style={item.id === selectedId ? styles.selected : {}}
           >
