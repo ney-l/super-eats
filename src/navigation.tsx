@@ -7,11 +7,11 @@ import {
   Restaurant,
   OrderPlaced,
   Account,
-  Browse,
   Orders,
   Login,
   Otp,
   Signup,
+  Favorites,
 } from './screens';
 import { IRestaurant } from './types';
 import { BottomTabs } from './components/layout';
@@ -23,6 +23,7 @@ export type StackParams = {
   Account: undefined;
   Login: undefined;
   Otp: undefined;
+  Favorites: undefined;
 };
 
 const screenOptions = {
@@ -36,7 +37,7 @@ function HomeTabs() {
   return (
     <Tab.Navigator screenOptions={screenOptions} tabBar={BottomTabs}>
       <Tab.Screen name="HomeTab" component={HomeScreen} />
-      <Tab.Screen name="Browse" component={Browse} />
+      <Tab.Screen name="Favorites" component={Favorites} />
       <Tab.Screen name="Orders" component={Orders} />
       {isSignedIn ? (
         <Tab.Screen name="Account" component={Account} />

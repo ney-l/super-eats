@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet } from 'react-native';
 import React from 'react';
 
-export const Browse = () => {
+export const Favorites = () => {
   return (
     <View style={styles.container}>
-      <Text>Browse Screen</Text>
+      <Text>Favorites Screen</Text>
       <Text>🏗 Under Construction</Text>
     </View>
   );

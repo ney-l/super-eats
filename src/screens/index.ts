@@ -1,5 +1,5 @@
 export * from './Account.screen';
-export * from './Browse.screen';
+export * from './Favorites.screen';
 export * from './Home.screen';
 export * from './Login.screen';
 export * from './OrderPlaced.screen';

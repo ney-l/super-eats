@@ -3,7 +3,27 @@ import React from 'react';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
-export const BottomTabs = ({ navigation }: BottomTabBarProps) => {
+const icons = [
+  {
+    text: 'Home',
+    icon: 'home',
+  },
+  {
+    text: 'Favorites',
+    icon: 'heart',
+  },
+  {
+    text: 'Orders',
+    icon: 'receipt',
+  },
+  {
+    text: 'Account',
+    icon: 'user',
+  },
+];
+
+export const BottomTabs = ({ navigation, ...rest }: BottomTabBarProps) => {
+  console.log(rest.state);
   const handlePress = (route: string) => {
     if (route === 'Home') {
       navigation.navigate('Home', { screen: 'HomeTab' });
@@ -11,12 +31,18 @@ export const BottomTabs = ({ navigation }: BottomTabBarProps) => {
     }
     navigation.navigate(route);
   };
+
   return (
     <View style={styles.container}>
-      <Icon icon="home" text="Home" id="Home" onPress={handlePress} />
-      <Icon icon="search" text="Browse" id="Browse" onPress={handlePress} />
-      <Icon icon="receipt" text="Orders" id="Orders" onPress={handlePress} />
-      <Icon icon="user" text="Account" id="Account" onPress={handlePress} />
+      {icons.map(({ icon, text }) => (
+        <Icon
+          key={icon}
+          icon={icon}
+          text={text}
+          id={text}
+          onPress={handlePress}
+        />
+      ))}
     </View>
   );
 };
