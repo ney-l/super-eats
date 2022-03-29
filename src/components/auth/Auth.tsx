@@ -9,8 +9,11 @@ export const Auth = ({ goToOtpScreen }: { goToOtpScreen: () => void }) => {
   const [formattedPhone, setFormattedPhone] = useState('');
   const phoneInput = useRef<PhoneInput>(null);
 
+  const isEnabled = phone?.length === 10;
+
   const handlePress = () => {
     console.log({ formattedPhone });
+
     goToOtpScreen();
   };
 
@@ -39,7 +42,7 @@ export const Auth = ({ goToOtpScreen }: { goToOtpScreen: () => void }) => {
             }}
           />
         </View>
-        <ContinueButton onPress={handlePress} />
+        <ContinueButton onPress={handlePress} disabled={!isEnabled} />
         <Consent />
       </View>
     </View>

@@ -6,8 +6,6 @@ import { StackParams } from '../navigation';
 export const Login = ({
   navigation,
 }: StackScreenProps<StackParams, 'Login'>) => {
-  const [step, setStep] = useState('enter-phone');
-
   const goToOtpScreen = () => navigation.navigate('Otp');
 
   return <Auth goToOtpScreen={goToOtpScreen} />;
