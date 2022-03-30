@@ -96,8 +96,13 @@ export const useRestaurants = () => {
       .finally(() => setIsLoading(false));
   }, [city, activeTab, categoryId]);
 
+  const filteredRestaurants = restaurants.filter((restaurant) =>
+    restaurant.transactions.includes(activeTab.toLowerCase())
+  );
+
   return {
-    restaurants,
+    restaurants:
+      filteredRestaurants.length === 0 ? restaurants : filteredRestaurants, // in some areas there are no restaurants by transaction category which does not give the best impression while demoing this app, hence this line
     onCityChange,
     activeTab,
     onTabChange,
