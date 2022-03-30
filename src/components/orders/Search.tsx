@@ -1,5 +1,5 @@
 import { StyleSheet, TextInput, View } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export const Search = ({
@@ -7,7 +7,7 @@ export const Search = ({
   onChangeText,
 }: {
   text: string;
-  onChangeText: (val) => void;
+  onChangeText: (val: string) => void;
 }) => {
   return (
     <View style={styles.container}>
