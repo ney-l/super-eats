@@ -32,6 +32,7 @@ export function HomeScreen({
     if (id !== restaurant.id) {
       dispatch(clearCart());
     }
+
     navigation.navigate('Restaurant', { restaurant });
   };
 

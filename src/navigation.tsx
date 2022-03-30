@@ -45,8 +45,20 @@ function HomeTabs() {
   return (
     <Tab.Navigator screenOptions={screenOptions} tabBar={BottomTabs}>
       <Tab.Screen name="HomeTab" component={HomeScreen} />
-      <Tab.Screen name="Favorites" component={Favorites} />
-      <Tab.Screen name="Orders" component={Orders} />
+      <Tab.Screen
+        name="Favorites"
+        options={{
+          headerShown: true,
+        }}
+        component={Favorites}
+      />
+      <Tab.Screen
+        name="Orders"
+        component={Orders}
+        options={{
+          headerShown: true,
+        }}
+      />
       {isSignedIn ? (
         <Tab.Screen name="Account" component={RenderAccount} />
       ) : (

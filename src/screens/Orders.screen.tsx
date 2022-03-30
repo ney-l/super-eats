@@ -1,19 +1,24 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import React from 'react';
+import { Order } from '../components/orders';
+import { useAppSelector } from '../types';
 
 export const Orders = () => {
+  const orders = useAppSelector((state) => state.orders);
+  console.log(orders);
   return (
-    <View style={styles.container}>
-      <Text>Orders Screen</Text>
-      <Text>🏗 Under Construction</Text>
-    </View>
+    <ScrollView style={styles.container}>
+      {orders.map((order) => (
+        <Order key={order.id} order={order} />
+      ))}
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#eee',
+    padding: 10,
   },
 });
