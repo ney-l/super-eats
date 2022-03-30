@@ -2,26 +2,30 @@ import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import React from 'react';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { addOrRemoveToCart } from '../../store/features/cartSlice';
-import { IMenuItem, useAppDispatch, useAppSelector } from '../../types';
+import {
+  IMenuItem,
+  IRestaurant,
+  useAppDispatch,
+  useAppSelector,
+} from '../../types';
 
 export const MenuItems = ({
-  restaurantName,
-  restaurantId,
   hideCheckbox,
   imageStyles,
   menu,
+  restaurant,
 }: {
-  restaurantName: string;
-  restaurantId: string;
   hideCheckbox?: boolean;
   imageStyles?: {};
   menu: IMenuItem[];
+  restaurant: IRestaurant;
 }) => {
   const { selectedItems } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
-  const selectItem = (item: IMenuItem) =>
-    dispatch(addOrRemoveToCart({ item, restaurantName, restaurantId }));
+  const selectItem = (item: IMenuItem) => {
+    dispatch(addOrRemoveToCart({ item, restaurant }));
+  };
 
   const findSelected = (id: string) =>
     selectedItems.some((item) => item.id === id);

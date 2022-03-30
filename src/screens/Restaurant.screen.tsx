@@ -64,12 +64,11 @@ export const Restaurant = ({
     <View style={styles.container}>
       <About restaurant={restaurant} />
       <Divider width={1.8} style={styles.divider} />
-      <MenuItems
-        restaurantName={restaurant.name}
-        restaurantId={restaurant.id}
-        menu={menu}
+      <MenuItems menu={menu} restaurant={restaurant} />
+      <ViewCart
+        onCheckoutClick={goToOrderPlacedScreen}
+        restaurant={restaurant}
       />
-      <ViewCart onCheckoutClick={goToOrderPlacedScreen} />
     </View>
   );
 };

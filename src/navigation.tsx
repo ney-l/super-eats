@@ -24,6 +24,7 @@ export type StackParams = {
   Login: undefined;
   Otp: undefined;
   Favorites: undefined;
+  Orders: undefined;
 };
 
 const screenOptions = {

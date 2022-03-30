@@ -20,8 +20,8 @@ export const OrderPlaced = ({
   const total = getTotalUSD(selectedItems);
 
   const handleHomeClick = () => {
-    navigation.popToTop();
     dispatch(clearCart());
+    navigation.navigate('Orders');
   };
 
   return (
@@ -41,9 +41,8 @@ export const OrderPlaced = ({
           <MenuItems
             imageStyles={{ marginLeft: 10 }}
             menu={selectedItems}
-            restaurantName={restaurant.name}
-            restaurantId={restaurant.id}
             hideCheckbox
+            restaurant={restaurant}
           />
           <LottieView
             style={styles.cooking}

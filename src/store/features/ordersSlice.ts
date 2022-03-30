@@ -1,4 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IOrder } from '../../types';
 
 const orders = [
   {
@@ -121,10 +122,11 @@ const ordersSlice = createSlice({
   name: 'orders',
   initialState: orders,
   reducers: {
-    addOrder: (state, { payload }) => {
-      state.push(payload);
+    addOrder: (state, { payload }: PayloadAction<IOrder>) => {
+      state.unshift(payload);
     },
   },
 });
 
 export const ordersReducer = ordersSlice.reducer;
+export const { addOrder } = ordersSlice.actions;

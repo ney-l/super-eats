@@ -1,28 +1,43 @@
 import { View, Text, StyleSheet, Modal, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 
-import { useAppSelector } from '../../types';
+import { IRestaurant, useAppDispatch, useAppSelector } from '../../types';
 import { OrderPreview } from './OrderPreview';
 import * as Api from '../../lib/api';
-import { getTotalUSD } from '../../utils/formatters.util';
+import { getFormattedDateTime, getTotalUSD } from '../../utils/formatters.util';
 import FullScreenLoader from '../layout/FullScreenLoader';
+import { addOrder } from '../../store/features/ordersSlice';
 
 export const ViewCart = ({
   onCheckoutClick,
+  restaurant,
 }: {
   onCheckoutClick: () => void;
+  restaurant: IRestaurant;
 }): JSX.Element | null => {
+  const dispatch = useAppDispatch();
   const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const { selectedItems: items, restaurant } = useAppSelector(
-    (state) => state.cart
-  );
+  const { selectedItems: items } = useAppSelector((state) => state.cart);
 
   const total = getTotalUSD(items);
 
+  const order = {
+    id: Date.now() + Math.floor(Math.random() * 100),
+    restaurant,
+    selectedItems: items.map((item) => ({
+      ...item,
+      quantity: 1,
+      size: 'Regular',
+    })),
+    status: 'Accepted',
+    createdAt: getFormattedDateTime(),
+  };
+
   const saveOrder = async () => {
     await Api.saveOrder({ items, restaurantId: restaurant.id });
+    dispatch(addOrder(order));
   };
 
   const handleCheckoutPress = async () => {

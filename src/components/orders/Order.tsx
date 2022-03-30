@@ -3,29 +3,7 @@ import React from 'react';
 import { Restaurant } from './Restaurant';
 import OrderTotal from './OrderTotal';
 import OrderItem from './OrderItem';
-
-interface IOrder {
-  restaurant: {
-    id: string;
-    name: string;
-    imageUrl: string;
-    location: {
-      address1: string;
-      city: string;
-    };
-  };
-  selectedItems: {
-    description: string;
-    id: string;
-    image: string;
-    price: string;
-    title: string;
-    quantity: number;
-    size: string;
-  }[];
-  status: string;
-  createdAt: string;
-}
+import { IOrder } from '../../types';
 
 export const Order = ({ order }: { order: IOrder }) => {
   const { selectedItems: items } = order;

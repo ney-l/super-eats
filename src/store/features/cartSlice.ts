@@ -1,12 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IMenuItem } from '../../types';
+import { IMenuItem, IRestaurant } from '../../types';
 
 interface ICartState {
   selectedItems: [] | IMenuItem[];
-  restaurant: {
-    id: string;
-    name: string;
-  };
+  restaurant: IRestaurant;
 }
 
 const initialState: ICartState = {
@@ -14,6 +11,16 @@ const initialState: ICartState = {
   restaurant: {
     id: '',
     name: '',
+    imageUrl: '',
+    rating: 0,
+    reviewCount: 0,
+    categories: [{ title: '' }],
+    price: '',
+    transactions: [''],
+    location: {
+      address1: '',
+      city: '',
+    },
   },
 };
 
@@ -24,11 +31,10 @@ export const cartSlice = createSlice({
     addOrRemoveToCart: (
       state,
       {
-        payload: { item, restaurantName, restaurantId },
+        payload: { item, restaurant },
       }: PayloadAction<{
         item: IMenuItem;
-        restaurantName: string;
-        restaurantId: string;
+        restaurant: IRestaurant;
       }>
     ) => {
       if (state.selectedItems.find((i) => i.id === item.id)) {
@@ -38,13 +44,11 @@ export const cartSlice = createSlice({
       } else {
         state.selectedItems = [...state.selectedItems, item];
       }
-      state.restaurant.name = restaurantName;
-      state.restaurant.id = restaurantId;
+      state.restaurant = restaurant;
     },
     clearCart: (state) => {
       state.selectedItems = [];
-      state.restaurant.id = '';
-      state.restaurant.name = '';
+      state.restaurant = {};
     },
   },
 });

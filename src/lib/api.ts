@@ -22,6 +22,10 @@ const transformRestaurants = (data) =>
       reviewCount: item.reviewCount,
       categories: item.categories,
       transactions: item.transactions,
+      location: {
+        address1: item.location.address1,
+        city: item.location.city,
+      },
     }));
 
 export const getRestaurants = async (
@@ -91,6 +95,6 @@ export const saveOrder = async (order) => {
     createdAt: new Date().toISOString(),
   };
   orders.push(newOrder);
-  await delay(3000);
+  await delay(1000);
   return { ...newOrder, message: 'order saved' };
 };

@@ -7,6 +7,10 @@ export interface IRestaurant {
   categories: [{ title: string }];
   price: string;
   transactions: string[];
+  location: {
+    address1: string;
+    city: string;
+  };
 }
 
 export interface IMenuItem {
@@ -15,4 +19,19 @@ export interface IMenuItem {
   price: string;
   image: string;
   description: string;
+}
+
+export interface IOrder {
+  restaurant: IRestaurant;
+  selectedItems: {
+    description: string;
+    id: string;
+    image: string;
+    price: string;
+    title: string;
+    quantity: number;
+    size: string;
+  }[];
+  status: string;
+  createdAt: string;
 }
