@@ -7,9 +7,12 @@ import { Button } from '../components/common/Button';
 import { StackScreenProps } from '@react-navigation/stack';
 import { StackParams } from '../navigation';
 
-export const Otp = ({ navigation }: StackScreenProps<StackParams, 'Otp'>) => {
+export const Otp = ({
+  navigation,
+  onLogin,
+}: StackScreenProps<StackParams, 'Otp'>) => {
   const [code, setCode] = useState('');
-  const handleLogin = () => console.log(`Code is ${code}, now handle login`);
+  const handleLogin = () => onLogin();
   const goBack = () => navigation.goBack();
   return (
     <SafeAreaWrapper>

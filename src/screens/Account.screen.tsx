@@ -1,31 +1,27 @@
-import { View, Text, StyleSheet } from 'react-native';
-import React, { useEffect } from 'react';
+import { View, StyleSheet } from 'react-native';
+import React from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
 import { StackParams } from '../navigation';
+import { SafeAreaWrapper } from '../components/layout';
+import { Header, Menu, QuickMenu } from '../components/account';
 
 export const Account = ({
   navigation,
-}: StackScreenProps<StackParams, 'Account'>) => {
-  // const isAuthenticated = false;
-
-  // useEffect(() => {
-  //   if (!isAuthenticated) {
-  //     navigation.navigate('Login');
-  //   }
-  // }, [isAuthenticated]);
-
+  onLogout,
+}: StackScreenProps<StackParams, 'Account'> & { onLogout: () => void }) => {
   return (
-    <View style={styles.container}>
-      <Text>Account Screen</Text>
-      <Text>🏗 Under Construction</Text>
-    </View>
+    <SafeAreaWrapper>
+      <View style={styles.container}>
+        <Header />
+        <QuickMenu />
+        <Menu onLogout={onLogout} />
+      </View>
+    </SafeAreaWrapper>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });

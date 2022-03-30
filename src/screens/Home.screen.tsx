@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import { Divider } from 'react-native-elements';
-
 import { StackScreenProps } from '@react-navigation/stack';
 
 import { HeaderTabs, SafeAreaWrapper } from '../components/layout';

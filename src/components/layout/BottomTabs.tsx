@@ -22,8 +22,7 @@ const icons = [
   },
 ];
 
-export const BottomTabs = ({ navigation, ...rest }: BottomTabBarProps) => {
-  console.log(rest.state);
+export const BottomTabs = ({ navigation }: BottomTabBarProps) => {
   const handlePress = (route: string) => {
     if (route === 'Home') {
       navigation.navigate('Home', { screen: 'HomeTab' });
