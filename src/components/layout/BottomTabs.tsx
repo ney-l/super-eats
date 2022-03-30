@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
 const icons = [
@@ -10,11 +10,11 @@ const icons = [
   },
   {
     text: 'Favorites',
-    icon: 'heart',
+    icon: 'hearto',
   },
   {
     text: 'Orders',
-    icon: 'receipt',
+    icon: 'filetext1',
   },
   {
     text: 'Account',
@@ -59,7 +59,7 @@ const Icon = ({
 }) => (
   <TouchableOpacity onPress={() => onPress(id)}>
     <View>
-      <FontAwesome5 name={icon} size={25} style={styles.icon} />
+      <AntDesign name={icon} size={25} style={styles.icon} />
       <Text>{text}</Text>
     </View>
   </TouchableOpacity>
