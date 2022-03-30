@@ -66,7 +66,7 @@ export const Restaurants = ({
     return <RestaurantsEmptyState isShow={isNotFound} />;
   }
   return (
-    <>
+    <View style={styles.container}>
       {restaurants.map((restaurant) => (
         <Restaurant
           restaurant={restaurant}
@@ -74,7 +74,7 @@ export const Restaurants = ({
           onRestaurantClick={onRestaurantClick}
         />
       ))}
-    </>
+    </View>
   );
 };
 
@@ -105,6 +105,9 @@ const emptyStateStyles = StyleSheet.create({
 });
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#eee',
+  },
   restaurant: {
     marginTop: 10,
     paddingBottom: 15,
