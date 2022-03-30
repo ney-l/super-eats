@@ -53,6 +53,7 @@ export function HomeScreen({
             restaurants={restaurants}
             onRestaurantClick={goToRestaurantScreen}
             isNotFound={isNotFound}
+            notFoundText="Oh oh.. no restaurants found. Try another category or location?"
           />
         </ScrollView>
         <Divider width={1} />
