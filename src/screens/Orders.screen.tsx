@@ -1,14 +1,22 @@
 import { StyleSheet, ScrollView } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { Order } from '../components/orders';
 import { useAppSelector } from '../types';
+import { Search } from '../components/orders/Search';
 
 export const Orders = () => {
   const orders = useAppSelector((state) => state.orders);
-  console.log(orders);
+  const [text, setText] = useState('');
+  const filteredOrder = orders.filter((order) => {
+    if (!text) return order;
+
+    return order.restaurant.name.includes(text);
+  });
   return (
     <ScrollView style={styles.container}>
-      {orders.map((order) => (
+      <Search text={text} onChangeText={setText} />
+
+      {filteredOrder.map((order) => (
         <Order key={order.id} order={order} />
       ))}
     </ScrollView>
