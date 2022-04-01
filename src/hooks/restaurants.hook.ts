@@ -3,6 +3,7 @@ import * as Location from 'expo-location';
 
 import * as Api from '../lib';
 import { IRestaurant } from '../types';
+import { getErrorMessage } from '../utils';
 
 const DEFAULT_CITY_NAME = 'Muelheim';
 
@@ -25,8 +26,9 @@ const getCurrentCity = async () => {
 
     return { error: null, city: DEFAULT_CITY_NAME };
   } catch (err) {
-    console.error('Error occured: ', err.message, err.stack);
-    return { error: err.message, city: '' };
+    console.error('Error occured: ', err);
+    const errorMessage = getErrorMessage(err);
+    return { error: errorMessage, city: '' };
   }
 };
 
