@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 
-const OrderTotal = ({
+export const OrderTotal = ({
   createdAt,
   total,
 }: {
@@ -15,8 +15,6 @@ const OrderTotal = ({
     </View>
   );
 };
-
-export default OrderTotal;
 
 const styles = StyleSheet.create({
   container: {

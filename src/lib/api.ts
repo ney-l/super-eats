@@ -29,7 +29,7 @@ const transformRestaurants = (data) =>
     }));
 
 export const getRestaurants = async (
-  city: string = 'Muelheim',
+  city: string | null = 'Muelheim',
   categoryId?: string
 ): Promise<{ restaurants: IRestaurant[]; error: string }> => {
   if (!city) {

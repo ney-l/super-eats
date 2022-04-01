@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 
-const OrderItem = ({
+export const OrderItem = ({
   item,
 }: {
   item: {
@@ -20,8 +20,6 @@ const OrderItem = ({
     </View>
   );
 };
-
-export default OrderItem;
 
 const styles = StyleSheet.create({
   container: {

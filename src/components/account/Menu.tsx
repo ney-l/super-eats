@@ -12,6 +12,34 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 const DATA = [
   {
     icon: 'isv',
+    id: 'bd7acbea-c1b1-46c20df-aed5-3ad53abb28ba',
+    title: 'Order History',
+  },
+  {
+    icon: 'hearto',
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'Favorite Orders',
+  },
+  {
+    icon: 'message1',
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Chat with Zomato Support',
+  },
+  {
+    icon: 'contacts',
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Address Book',
+  },
+  {
+    icon: 'logout',
+    id: '58694a0f-3da1-471f-bd96-145571e29d7eerwer2',
+    title: 'SuperEats Credits',
+  },
+];
+
+const secondaryMenu = [
+  {
+    icon: 'isv',
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
     title: 'Send Feedback',
   },
@@ -24,11 +52,6 @@ const DATA = [
     icon: 'message1',
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
     title: 'Rate us on the App Store',
-  },
-  {
-    icon: 'logout',
-    id: '58694a0f-3da1-471f-bd96-145571e29d7eerwer2',
-    title: 'Logout',
   },
 ];
 
@@ -80,7 +103,7 @@ export const Menu = ({ onLogout }: { onLogout: () => void }) => {
       />
       <View style={styles.divider}></View>
       <FlatList
-        data={DATA}
+        data={secondaryMenu}
         renderItem={renderSecondaryMenu}
         keyExtractor={(item) => item.id}
       />
@@ -105,7 +128,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 12,
+    fontSize: 15,
     paddingLeft: 10,
   },
   iconWrapper: {

@@ -1,8 +1,8 @@
 import { View, StyleSheet } from 'react-native';
 import React from 'react';
 import { Restaurant } from './Restaurant';
-import OrderTotal from './OrderTotal';
-import OrderItem from './OrderItem';
+import { OrderTotal } from './OrderTotal';
+import { OrderItem } from './OrderItem';
 import { IOrder } from '../../types';
 
 export const Order = ({ order }: { order: IOrder }) => {

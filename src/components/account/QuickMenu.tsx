@@ -31,7 +31,7 @@ export const QuickMenu = () => {
   );
 };
 
-const Option = ({ icon, title }) => (
+const Option = ({ icon, title }: { icon: string; title: string }) => (
   <TouchableOpacity>
     <View style={styles.option}>
       <AntDesign name={icon} size={20} />

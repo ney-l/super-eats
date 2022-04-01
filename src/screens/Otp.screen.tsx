@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 
 import { SafeAreaWrapper } from '../components/layout';
-import { Button } from '../components/common/Button';
+import { Button } from '../components/common';
 import { StackScreenProps } from '@react-navigation/stack';
 import { StackParams } from '../navigation';
 
