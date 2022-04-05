@@ -1,32 +1,38 @@
-import camelcase from 'lodash.camelcase';
-import transform from 'lodash.transform';
-
 import { yelpAPIKey } from '../config';
 import { IRestaurant } from '../types';
 
-const transformRestaurants = (data) =>
+interface IRestaurantResponse {
+  id: string;
+  name: string;
+  image_url: string;
+  rating: number;
+  review_count: number;
+  categories: [{ title: string }];
+  price: string;
+  transactions: string[];
+  location: {
+    address1: string;
+    city: string;
+  };
+}
+
+const transformRestaurants = (data: IRestaurantResponse[]) =>
   data
-    .map((item) =>
-      transform(item, (result, val: any, key: string) => {
-        result[camelcase(key)] = val;
-      })
-    )
-    // only want restaurants with images
-    .filter((item) => item.imageUrl)
     .map((item) => ({
       id: item.id,
-      imageUrl: item.imageUrl,
+      imageUrl: item.image_url,
       name: item.name,
       price: item.price,
       rating: item.rating,
-      reviewCount: item.reviewCount,
+      reviewCount: item.review_count,
       categories: item.categories,
       transactions: item.transactions,
       location: {
         address1: item.location.address1,
         city: item.location.city,
       },
-    }));
+    }))
+    .filter((item) => item.imageUrl);
 
 export const getRestaurants = async (
   city: string | null = 'Muelheim',
@@ -87,7 +93,18 @@ const delay = (time: number) => {
   });
 };
 
-export const saveOrder = async (order) => {
+interface IOrderArg {
+  restaurantId: string;
+  userId: string;
+  items: {
+    id: string;
+    title: string;
+    description: string;
+    price: string;
+  }[];
+}
+
+export const saveOrder = async (order: IOrderArg) => {
   console.log('order saved');
   const newOrder = {
     ...order,
